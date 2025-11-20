@@ -38,10 +38,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         enum: ["vegetarian", "balanced", "vegan", "high_protein", "gluten_free", "none"],
         default: "none"
-    },
+    }, 
     timePerDay: {
-        type: String,
-        min: 5
+        type: Number,
+        min: 1
     },
     activityLevel: {
         type: String,
@@ -52,6 +52,20 @@ const userSchema = new mongoose.Schema({
         type: String,
         enum: ["free", "premium"],
         default: "free"
+    },
+    subscription: {
+        status: {
+            type: String,
+            enum: ["inactive", "pending", "active"],
+            default: "inactive"
+        },
+        plan: {
+            type: String,
+            enum: ["quarterly", "monthly", "yearly"]
+        },
+        startDate: Date,
+        endDate: Date,
+        reference: String
     }
 })
 

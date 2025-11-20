@@ -1,5 +1,40 @@
 const userModel = require("../models/userModel")
 
+const getUserById = async(req,res)=>{
+    const { id }= req.params
+    try {
+        const user = await userModel.findById(id)
+        if(!user){
+            return res.status(404).json({
+                success:false,
+                message:"No user found"
+            })
+        }
+        res.status(200).json({
+            success:true,
+            message:"User fetched successfully",
+            user
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+const getUserProfile = (req, res) => {
+    const user = req.user
+    try {
+       if(!user){
+            return res.status(404).json({
+                success: false,
+                message: "user not found"
+            })
+        }
+        return res.status(200).json(user) 
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 const updateUserProfile = async (req, res) => {
    try {
     const userId = req.user._id
@@ -31,4 +66,8 @@ const updateUserProfile = async (req, res) => {
    } 
 }
 
-module.exports = { updateUserProfile } 
+module.exports = { 
+    updateUserProfile,
+    getUserById,
+    getUserProfile
+ }
