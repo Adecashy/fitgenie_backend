@@ -5,6 +5,7 @@ const userModel = require("../models/userModel")
 const initializeSubscription = async (req, res) => {
     try {
         const user = req.user
+        
         const { plan } = req.body
         if (user.subscription.status == `active`) {
             return res.status(400).json({
@@ -17,6 +18,11 @@ const initializeSubscription = async (req, res) => {
                 success: false,
                 message: "Plan is required"
             })
+        }
+        const planAmounts = {
+            monthly: 10000 * 100,
+            quarterly: 28000 * 100,
+            yearly: 99999 * 100
         }
         const amount = planAmounts[plan]
         if (!amount) return res.status(400).json({ success: false, message: "Invalid Plan" })
@@ -55,7 +61,7 @@ const activateSubscription = async (req, res) => {
             return res.status(401).send("Invalid Signature")
         }
         const body = JSON.parse(req.body.toString("utf8"))
-        // console.log(body)
+        console.log(body)
         if (body.event == "charge.success") {
             const { userId, plan } = body.data.metadata
             const reference = body.data.reference

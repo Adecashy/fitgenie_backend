@@ -15,20 +15,23 @@ dotenv.config()
 const PORT = process.env.PORT
 connectToDb()
 
-app.post(
-    "api/subscription/webhook",
-    express.raw({ type: "*/*" })), //keep body as buffer 
-    activateSubscription
 
-app.use(express.urlencoded({ extended: true }))
-app.use(cors())
-app.use(morgan("dev"))
+app.post(
+    "/api/subscription/webhook",
+    express.raw({ type: "*/*" }),   //keep body as buffer 
+    activateSubscription
+)  
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(cors());
+app.use(morgan("dev"));
+
 
 app.listen(PORT, ()=> {
     console.log(`server running on port ${PORT}`)
 })
 
-app.use(express.json())
 
 app.use("/api/auth", authRouter)
 app.use("/api/users", userRouter)

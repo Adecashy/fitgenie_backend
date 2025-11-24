@@ -10,7 +10,7 @@ const isLoggedIn = async (req, res, next) => {
             token = req.headers.authorization.split(" ")[1]
        } 
        if (!token) {
-            res.status(403).json({
+            return res.status(403).json({
                 success: false,
                 message: "Token is required"
             })
@@ -22,7 +22,7 @@ const isLoggedIn = async (req, res, next) => {
        // 3. check if it has not been blacklisted
       const isBlacklisted = await blacklistedTokenModel.findOne({ token })
        if (isBlacklisted) {
-            res.status(403).json({
+            return res.status(403).json({
                 success: false,
                 message: "Token is invalid: blacklisted"
             })
