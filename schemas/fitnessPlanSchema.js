@@ -44,7 +44,7 @@ const weekSchema = z.object({
 
 const aiPlanSchema = z.object({
     summary: summarySchema,
-    weekPlan: z.array(weekSchema),
+    weeklyPlan: z.array(weekSchema),
     tips: z.array(z.string())
 });
 

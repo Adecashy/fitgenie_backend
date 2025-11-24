@@ -54,7 +54,7 @@ const initializeSubscription = async (req, res) => {
 //activate subscription
 const activateSubscription = async (req, res) => {
     try {
-        // console.log(req.headers)
+        console.log(req.headers)
         const hash = crypto.createHmac("sha512", process.env.PAYSTACK_SECRET_KEY)
         const updatedHash = hash.update(req.body).digest("hex")
         if (updatedHash !== req.headers["x-paystack-signature"]) {
