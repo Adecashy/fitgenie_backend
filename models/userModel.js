@@ -40,7 +40,7 @@ const userSchema = new mongoose.Schema({
         default: "none"
     }, 
     timePerDay: {
-        type: Number,
+        type: String,
         min: 1
     },
     activityLevel: {
@@ -64,6 +64,6 @@ const userSchema = new mongoose.Schema({
     }
 })
 
-const userModel = mongoose.model("users", userSchema)
+const  userModel = mongoose.model("users", userSchema)
 
 module.exports = userModel 

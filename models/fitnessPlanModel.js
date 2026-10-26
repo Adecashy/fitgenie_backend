@@ -9,12 +9,12 @@ const exerciseSchema = new mongoose.Schema({
 const workoutDaySchema = new mongoose.Schema({
     day: { type: String, required: true },
     focus: { type: String, required: true },
-    exercise: { type: [exerciseSchema], required: true }
+    exercises: { type: [exerciseSchema], required: true }
 }, { _id: false });
 
 const mealSchema = new mongoose.Schema({
     meal:{ type: String, required: true },
-    meal:{ type: [String], required: true }
+    items:{ type: [String], required: true }
 }, { _id: false });
 
 const weekSchema = new mongoose.Schema({
@@ -36,7 +36,7 @@ const fitnessPlanSchema = new mongoose.Schema({
     summary: {
         goal: { type: String, required: true },
         durationDays: { type: Number, default: null },
-        timePerDay: { type: Number, required: true },
+        timePerDay: { type: String, required: true },
         dietPreference: { type: String, required: true }
     },
     weeklyPlan: { type: [weekSchema], required: true },

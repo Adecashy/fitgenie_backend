@@ -31,7 +31,7 @@ const weekSchema = z.object({
         macros: z.object({
             protein: z.string(),
             carbs: z.string(),
-            fats: z.string()
+            fat: z.string()
         }),
         meals: z.array(
             z.object({

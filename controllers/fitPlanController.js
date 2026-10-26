@@ -44,7 +44,7 @@ const getFitnessPlanHistory = async (req, res) => {
     try {
         const userId = req.user._id
 
-        const plans = await fitnessPlanModel.find({ userId }).sort({ createAt: -1 })
+        const plans = await fitnessPlanModel.find({ userId }).sort({ createdAt: -1 })
 
         res.status(200).json({
             success: true,
@@ -61,7 +61,7 @@ const getLatestPlanHistory = async (req, res) => {
     try {
         const userId = req.user._id
 
-        const latestPlan = await fitnessPlanModel.findOne({ userId }).sort({ createAt: -1 })
+        const latestPlan = await fitnessPlanModel.findOne({ userId }).sort({ createdAt: -1 })
 
         if (!latestPlan) {
             return res.status(404).json({

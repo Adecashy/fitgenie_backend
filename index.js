@@ -39,9 +39,9 @@ app.use("/api/fit-plan", fitPlanRouter)
 app.use("/api/subscription", subscriptionRouter)
 
 
-app.get("/", (req, res)=> {
+app.get("/", (req, res)=> { 
     res.send("welcome to Node class Api")
-})
+});
 
 
 //push
