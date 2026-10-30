@@ -28,9 +28,6 @@ app.use(cors());
 app.use(morgan("dev"));
 
 
-app.listen(PORT, ()=> {
-    console.log(`server running on port ${PORT}`)
-})
 
 
 app.use("/api/auth", authRouter)
@@ -43,6 +40,9 @@ app.get("/", (req, res)=> {
     res.send("welcome to Node class Api")
 });
 
+app.listen(PORT, ()=> {
+    console.log(`server running on port ${PORT}`)
+})
 
 //push
 
